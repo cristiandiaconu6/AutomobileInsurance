@@ -8,8 +8,6 @@ from Project.Pages.automobile_insurance import SendQuote
 from selenium.webdriver.chrome.options import Options
 import time
 
-#blabla
-
 class Test_VehicleData():
 
     @pytest.fixture()
