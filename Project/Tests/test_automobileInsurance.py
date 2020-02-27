@@ -5,8 +5,8 @@ from Project.Pages.automobile_insurance import InsurantData
 from Project.Pages.automobile_insurance import ProductData
 from Project.Pages.automobile_insurance import PriceOptions
 from Project.Pages.automobile_insurance import SendQuote
-import time
 from selenium.webdriver.chrome.options import Options
+import time
 
 class Test_VehicleData():
 
