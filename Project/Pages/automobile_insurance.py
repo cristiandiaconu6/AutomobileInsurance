@@ -1,5 +1,8 @@
 from selenium.webdriver.support.select import Select
 from Project.Locators.Locators import Locators
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
 import time
 
 class VehicleData():
@@ -12,8 +15,9 @@ class VehicleData():
     def enter_make(self, make):
         Select(self.driver.find_element(*Locators.make_dropmenu)).select_by_visible_text(make)
 
+
     def enter_engine_performance(self, enginePerformance):
-        self.driver.find_element(*Locators.engine_performance_textbox).send_keys(enginePerformance)
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((Locators.engine_performance_textbox))).send_keys(enginePerformance)
 
     def enter_date_of_manufacture(self, dateOfManufacture):
         self.driver.find_element(*Locators.date_of_manufacture_textbox).send_keys(dateOfManufacture)
@@ -107,8 +111,10 @@ class PriceOptions():
         self.driver.find_element(*Locators.price_options[priceOption]).click()
 
     def download_quote(self):
+        self.driver.implicitly_wait(10)
         self.driver.find_element(*Locators.download_quote_button).click()
         time.sleep(10)
+        #WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((Locators.select_price_option))).click()
         self.driver.find_element(*Locators.select_price_option).click()
         self.driver.find_element(*Locators.next_button_to_sendQuote).click()
 

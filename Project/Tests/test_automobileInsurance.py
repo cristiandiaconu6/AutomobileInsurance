@@ -6,6 +6,8 @@ from Project.Pages.automobile_insurance import ProductData
 from Project.Pages.automobile_insurance import PriceOptions
 from Project.Pages.automobile_insurance import SendQuote
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 import time
 
 #comment
@@ -19,13 +21,11 @@ class Test_VehicleData():
         self.driver = webdriver.Chrome(executable_path=self.chromeDriverPath, options=self.chromeOptions)
         global driver
         driver = self.driver
-        driver.implicitly_wait(10)
         driver.maximize_window()
         driver.get("http://sampleapp.tricentis.com/101")
-        time.sleep(2)
+        driver.implicitly_wait(10)
         yield
         driver.close()
-
 
     def test_example(self, test_setup):
     #Selecting Automobile from top section
@@ -35,7 +35,6 @@ class Test_VehicleData():
     #Entering Vehicle Data
         vehicleData = VehicleData(driver)
         vehicleData.enter_make("Volvo")
-        time.sleep(1)
         vehicleData.enter_engine_performance("120")
         vehicleData.enter_date_of_manufacture("11/11/2013")
         vehicleData.enter_number_of_seats("5")
