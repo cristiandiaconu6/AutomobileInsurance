@@ -1,0 +1,39 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-2019'
+strategy:
+  matrix:
+    Python37:
+      python.version: '3.7'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
+
+- script: |
+    python -m pip install selenium
+    python -m pip install pytest
+    python -m pip install pytest-azurepipelines
+  displayName: 'Install Selenium & Pytest'
+
+- script: |
+    npm install chromedriver
+  displayName: 'Install chromedriver'
+
+#- script: |
+#    pip install pytest
+#    pip install pytest-azurepipelines
+#    pip install selenium && npm install chromedriver
+#  displayName: 'Install dependencies'
+
+- powershell: python -m pytest Project/Tests/test_automobileInsurance.py
+  displayName: 'Run Scripts'
