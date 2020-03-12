@@ -20,10 +20,6 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
-    sudo apt install google-chrome-stable
-  displayName: 'Install Chrome'
-
-- script: |
     python -m pip install seleniumbase
   displayName: 'Verify install from PyPI'
 
