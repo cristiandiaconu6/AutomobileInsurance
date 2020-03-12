@@ -17,7 +17,7 @@ class Test_VehicleData():
         self.chromeOptions = Options()
         self.chromeOptions.add_experimental_option("prefs", {"download.default_directory": "C:\Reports"})
         #self.chromeDriverPath = "C:/Users/cristian.diaconu/PycharmProjects/AutomobileInsurance/Drivers/chromedriver.exe"
-        self.chromeDriverPath = "c:\hostedtoolcache\windows\python\3.7.6\x64\lib\site-packages\seleniumbase\drivers/chromedriver.exe"
+        self.chromeDriverPath = "c:/hostedtoolcache/windows/python/3.7.6/x64/lib/site-packages/seleniumbase/drivers/chromedriver.exe"
         self.driver = webdriver.Chrome(executable_path=self.chromeDriverPath, options=self.chromeOptions)
         global driver
         driver = self.driver
