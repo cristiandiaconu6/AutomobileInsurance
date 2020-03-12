@@ -6,14 +6,33 @@
 trigger:
 - master
 
+pool:
+  vmImage: 'windows-2019'
+strategy:
+  matrix:
+    Python37:
+      python.version: '3.7'
+
 steps:
 - task: UsePythonVersion@0
   inputs:
-    versionSpec: '3.8'
-    addToPath: true
-    architecture: 'x64'
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
 
 - script: |
-    pip install pytest-azurepipelines
-    python -m pytest project/tests/test_automobileInsurance.py
-  displayName: 'pytest'
+    python -m pip install seleniumbase
+  displayName: 'Install SeleniumBase'
+
+- script: |
+    seleniumbase install chromedriver
+    npm install chromedriver
+  displayName: 'Install chromedriver'
+
+#- script: |
+#    pip install pytest
+#    pip install pytest-azurepipelines
+#    pip install selenium && npm install chromedriver
+#  displayName: 'Install dependencies'
+
+- powershell: python -m pytest Project/Tests/test_automobileInsurance.py
+  displayName: 'Run Scripts'
