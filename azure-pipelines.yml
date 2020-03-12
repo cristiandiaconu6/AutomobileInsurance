@@ -20,10 +20,26 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
-    pip install pytest
-    pip install pytest-azurepipelines
-    pip install selenium && npm install chromedriver
-  displayName: 'Install dependencies'
+    sudo apt install google-chrome-stable
+  displayName: 'Install Chrome'
+
+- script: |
+    python -m pip install seleniumbase
+  displayName: 'Verify install from PyPI'
+
+- script: |
+    python setup.py install
+  displayName: 'Install SeleniumBase'
+
+- script: |
+    seleniumbase install chromedriver
+  displayName: 'Install chromedriver'
+
+#- script: |
+#    pip install pytest
+#    pip install pytest-azurepipelines
+#    pip install selenium && npm install chromedriver
+#  displayName: 'Install dependencies'
 
 - powershell: python -m pytest Project/Tests/test_automobileInsurance.py
   displayName: 'Run Scripts'
