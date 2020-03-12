@@ -17,6 +17,7 @@ class VehicleData():
 
 
     def enter_engine_performance(self, enginePerformance):
+        time.sleep(2)
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((Locators.engine_performance_textbox))).send_keys(enginePerformance)
 
     def enter_date_of_manufacture(self, dateOfManufacture):
