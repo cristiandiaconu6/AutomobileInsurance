@@ -25,6 +25,7 @@ steps:
 
 - script: |
     seleniumbase install chromedriver
+    npm install chromedriver
   displayName: 'Install chromedriver'
 
 #- script: |
