@@ -20,6 +20,7 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
+    pip install pytest
     pip install pytest-azurepipelines
     pip install selenium && npm install chromedriver
   displayName: 'Install dependencies'
