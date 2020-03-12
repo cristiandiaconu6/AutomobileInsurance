@@ -25,5 +25,5 @@ steps:
     pip install selenium && npm install chromedriver
   displayName: 'Install dependencies'
 
-- powershell: python -m pytest project/tests/test_automobileInsurance.py
+- powershell: python -m pytest Project/Tests/test_automobileInsurance.py
   displayName: 'Run Scripts'
